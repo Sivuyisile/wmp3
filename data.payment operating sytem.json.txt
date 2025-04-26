@@ -1,0 +1,7 @@
+﻿//Step 1: Set Up Your Environment
+Install Required Packages: Create a new directory for your project, and install the necessary packages:
+
+mkdir eft-payment-validation
+cd eft-payment-validation
+npm init -y
+npm install express body-parser axios dotenv

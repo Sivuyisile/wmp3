@@ -1,0 +1,148 @@
+<html>
+<head>
+<title><W.M.P clothing couture services></title>
+<meta name=(viewport)
+content=(width=device-width, initial-scale=1.0)>
+<meta name-(description)
+content-(W.M.P clothing couture services)/>
+<meta name-(keyword)
+content-(clothing line,W.M.P,clothing couture,online shopping,matrix,new clothes,clothing wear,texture, 
+                          fabric,quality wear,quality clothes)/>
+<meta name-(robot)
+content-(no follow)/>
+<meta http-equiv-author
+content-(themba ngwenya)/>
+<meta http-equiv-(pragma)
+content-(no cache)/>
+<meta http-equiv-expires
+content-NB:DATE SPECIFIED IN FORMAT/>
+</head>
+
+<body overflow=scroll.y():show
+                      x():hidden >
+
+<form action\\http:W.M.P clothing couture.html\index\services.html></a>
+ 
+<rel=style sheet scr-href-indx.css alt= style of the index></a>
+<style>
+<body>
+    <div background >
+  
+        
+          
+ <style>
+.parallax
+<foreground image scr-href-images\background img\img.gif.jpeg.png  alt-image of the foreground></a>
+
+<BODY HEADER>
+
+<"horizontal nav bar">
+ ul>
+  
+<li><select box name-'relative url'>
+
+<option value-'home latest'>home latest</option>scr-href-home latest>home latest</a>
+
+<option value-'events'><events></option scr-href-events.html>events</a>
+
+
+<option value-'registration'>registration</option>scer-<ahref-registration.html><registration></a>
+
+
+<option value-'contact us'><contact us></option scr-href-contact.html><contact us></a>
+
+</select box>
+</li>
+
+  <li>
+    <input type-'search'
+       name-'search'
+       placeholder-'search'>
+       
+        <input type-'submit' 
+        value-'search'/>
+        </li>
+
+  <li>
+
+<!..Logo for W.M.P..>
+
+
+<img src-href-images\logo.gif.jpeg.png 
+alt-logo for W.M.P</img>
+
+</li>
+  
+<li>
+  <checkbox>
+<!-- Rounded switch -->
+<label class="switch">
+  <input type="checkbox">
+  <span class="slider round"></span>
+</label>
+</check box>
+</li>
+
+<li>
+  <button type=button
+   class:cart-button
+        overflow:hidden
+      </i>
+      </button>
+       </ul>
+
+<h1>excape the future</h1>
+
+
+ <button type=button
+class="ai ai-Play";
+ </button>
+
+ <button  type=button class="ai ai-SoundOn"
+</button>
+
+<button type=button
+     class="ai ai-SoundOff"
+</button>  
+  
+<style>
+  .parallax
+
+<body body>
+<h2><W.M.P CLOTHING COUTURE></h2>
+    
+ <p><discover your way></p>
+
+    <p><W.M.P is a clothing couture with great taste to texture,fabric,durability and far more importantly appreciated value  in the product that describes itself as a more aligned perspective to  symbolism. A movement of promise to change perspective to modern labor,society persepction to what success is; brings insight to the conspiracy of what the modern slavery projected in the world as agrowth and progression of a system componented by people “ for  them, by  them” without them actually benefiting or understanding  its existance and  history ultimately  flooding ingnorance and naïve tendencies to the upbringing  youth  for more centuries to come.></p> 
+      <div img1>
+    </img>
+
+    <p><The background history of the couture is a group of young gentlemen in their mid twenties that could not stop questioning their reasons for working even with their responsibilities, expenses adding up in correspondance to the rate of the living being high. In the mist of all the confusion ,the compounded thoughts, mashed skills,charismatic characters  and no fear to risk as they figured if they were working for  another person’s dream that has manifested and grew to a HAND PULLING STRINGS IN A CORPORATION FULL OF WORKERS then why not  act on a  visionery producer’s mindset instead of a consumer intuitive addiction.>
+      
+      <div img2>
+    </img>
+    <p><Predictably the couture would just be seen as  a clothing label with prospects  of  creating a demand in their products in the population (target market)and so doing so increasing capabilities to eventually meet great number of supply  in proportion to the number of people of future sales gradually building trust , order flow and lower goods inventory.>
+      
+    <divimg3></img>
+    
+    <p><Althou that’s just the first stone to jump on with skills progressing and markets all around evolving to a more complex systems,it would be observate to branch to ideas, meet the growth of revolution;adding to what has been said,investmests from future prospects would be used in different ventures of the global market in uncommon sectors  to add more streams of  passive income and take prouct and services to a more comfortable state changing the methology of what clothing business do and produce income.></p>
+      
+      <div img4> <img>
+       
+    </img>
+    
+</body>
+.parallax 
+  <body footer>
+<p><scr-href-index\home latest.html</a><i class:fa fa home;></p>
+<p><scr-href-index\events.html</a><i class:fa fa calendar;></p>
+<p><scr-href-index\registration.html</a><i class:fas fa user-plus ;></p>
+<p><scr-href-index\services.html</a><i class:fas fa-cut(&#xf0c4);</p>
+<p><scr-href-index\follow us.html</a><i class:fas fa-at(&#xf1fa);</p>
+<p><scr-href-index\contact us.html</a> <i class:fas fa-phone(&#xf1fa); ;</p>               
+
+</div>
+</body footer>
+</background>
+</form>
+</html>

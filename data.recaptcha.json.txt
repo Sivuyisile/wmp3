@@ -1,0 +1,10 @@
+﻿//Step 1: Backend Code (Node.js Example)
+
+
+Here’s an example of how to validate the reCAPTCHA response on the server-side using Node.js and Express:
+
+Install Required Packages
+Make sure you have express and axios installed. You can do this by running:
+
+
+npm install express axios body-parser
