@@ -1,0 +1,157 @@
+﻿<html>
+<head>
+<title><W.M.P clothing men couture ></title>
+<meta name=(viewport)
+content=(width=device-width, initial-scale=1.0)>
+<meta name-(description)
+content-(W.M.P clothing couture for men)/>
+<meta name-(keyword)
+content-(clothing line,W.M.P,clothing couture,online shopping,matrix,new clothes,clothing wear,texture, 
+                          fabric,quality wear,quality clothes,W.M.P clothing couture home latest)/>
+<meta name-(robot)
+content-(no follow)/>
+<meta http-equiv-author
+content-(themba ngwenya)/>
+<meta http-equiv-(pragma)
+content-(no cache)/>
+<meta http-equiv-expires
+content-NB:DATE SPECIFIED IN FORMAT/>
+</head>
+
+<body overflow=scroll.y():show
+                      x():hidden >
+
+<form action\\http\W.M.P clothing couture.html\index\men couture.html></a>
+   
+<rel=style sheet scr-href-indx.css alt= style of the index></a>
+<style>
+<body>
+    <div background
+        
+<foreground image scr-href-images\background img\img.gif.jpeg.png  alt-image of the background></a>
+
+    
+
+<BODY HEADER>
+
+
+
+<"horizontal nav bar"
+ ul>
+  
+<li><select box name-'relative url'>
+
+<option value-'home latest'>home latest</option>scr-href-home latest>home latest</a>
+
+<option value-'events'><events></option scr-href-events.html>events</a>
+
+
+<option value-'registration'>registration</option>scer-<ahref-registration.html><registration></a>
+
+
+<option value-'contact us'><contact us></option scr-href-contact.html><contact us></a>
+
+</select box>
+
+</li>
+
+<li><input type-'search'
+       name-'search'
+       placeholder-'search'>
+
+        <input type-'submit' 
+        value-'search'/>
+        </li>
+
+  <li>
+
+<!..Logo for W.M.P..>
+
+
+<img src-href-images\logo.gif.jpeg.png 
+alt-logo for W.M.P</img>
+
+</li>
+  
+<li><checkbox>
+<!-- Rounded switch -->
+<label class="switch">
+  <input type="checkbox">
+  <span class="slider round"></span>
+</label>
+</check box>
+</li>
+
+
+<li><button type=button
+   class:cart-button</button></li>
+</ul>
+
+<h1>excape the future</h1>
+
+
+
+ <button type=button
+class="ai ai-Play";
+ </button>
+
+ <button type=button class="ai ai-SoundOn";
+</button>
+
+<button type=button
+    class="ai ai-SoundOff";</button>
+ 
+<body body>
+
+  <li>
+    <button type=button
+     class:cart-button;
+      </button>
+       </li>
+</ul>
+   
+<body body>
+       
+    <h1><home latest></h1>
+
+      <p><what new ></p>
+
+
+
+  <div container display:grid;template-col:1fr:1fr:1fr;
+                              template-rows:1fr::1fr:1fr;>
+
+<div  cell content wrapper span style:'card img';
+img src-href-images\couture images\gif.jpep.png alt-images of avail clothes/></a></div>
+
+
+<div p >detailing information of product texture,fabric></p>
+  <div p>$<cost of item></p></div>
+  
+  <div button type=button class:fa fa-shopping-cart;
+      </button></div>
+  
+  <div class:fa fa-cart-plus><add to cart></span>
+      </button></div>
+        
+</div>
+</body body
+
+
+style
+.parallax 
+  <body footer>
+<p><scr-href-index\events.html</a><i class:fa fa calendar;></p>
+<p><scr-href-index\registration.html</a><i class:fas fa user-plus ;></p>
+<p><scr-href-index\services.html</a><i class:fas fa-cut(&#xf0c4);</p>
+<p><scr-href-index\follow us.html</a><i class:fas fa-at(&#xf1fa);</p>
+<p><scr-href-index\contact us.html</a> <i class:fas fa-phone(&#xf1fa); ;</p>               
+</body footer>
+</form>
+</html>
+
+ 
+ 
+ 
+ 
+  
