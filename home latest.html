@@ -18,6 +18,14 @@ content-(no cache)/>
 content-NB:DATE SPECIFIED IN FORMAT/>
 </head>
 
+//newly added for new "foreground-container" ID in 'home latest.js' file
+<div id="foreground-container">
+  <img src="images/index_foreground_img1.jpg" alt="Image 1">
+  <img src="images/index_foreground_img2.jpg" alt="Image 2">
+</div>
+//until here 
+
+
 <body overflow=scroll.y():show
                       x():hidden >
 
@@ -87,6 +95,31 @@ alt-logo for W.M.P</img>
    class:cart-button</button></li>
 </ul>
 
+<button class="cart-button">Add to Cart</button>
+<button class="cart-button">Add to Cart</button>
+//the buttons must look like the two above or else the selector won't find them
+
+<div id="shoppingNavCart">0</div> //for updating the shopping cart functions
+                                  //it will dynamically update
+
+<!--HTML for footer-->
+<footer id="footer">
+  <button class="footer-button" data-link="services.html">Services</button>
+  <button class="footer-button" data-link="followus.html">Follow Us</button>
+</footer>
+<!--now each button has a 'data-link' attribute pointing to a page-->
+
+
+<!--we must have a simple 'form' and 'input'-->
+<form id="searchForm">
+  <input type="text" id="searchbar" placeholder="Search for something:">
+  <button type="submit">Search</button>
+</form>
+
+<div id="searchFeedback"></div>   <!-- for showing messages -->
+<!--using '<form>' ensures that the enter key also triggers a seach-->
+
+
 <h1>excape the future</h1>
 
 
@@ -149,3 +182,10 @@ style
 </body footer>
 </form>
 </html>
+
+//this would be for the section or element we want to animate when the user scrolls:
+  <div id="parallax-section" style="background-image: url('your-backround.jpg'); background-attachment: fixed; background-sized: cover; height: 600px;">
+
+    <!-- optional content-->
+</div>    //line 47 to 49 in 'home latest.js' file
+<!--this section, fixed background, good for parallex-->
