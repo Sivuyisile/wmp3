@@ -1,6 +1,7 @@
-﻿$(document).ready(my cart.html){
-   
-    var=background,foreground,navBar,selectBox,searchBar,logoImage,shoppingNavCart,backToIndex,embedImg,parallex,costOfItem,shipping,emP;
+﻿$(document).ready(function){
+
+    
+    var background,foreground,navBar,selectBox,searchBar,logoImage,shoppingNavCart,backToIndex,embedImg,parallex,costOfItem,shipping,emP;
    
        background=$(document).css(background:HEX:F5F5F5; 
            rgb:(245,245,245););

@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang=""en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shopping Cart</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            background-color: #f5f5f5;
+            font-family: Helvetica, sans-serif;
+        }
+        .product {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px;
+        }
+        .cart-count {
+            font-weight: bold;
+        }
+        .confirmation {
+            position:fixed;
+            top: 20px;
+            right: 20px;
+            background: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-family: Arial, sans-serif;
+            z-index: 1000;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>My Shopping Cart</h1>
+
+    <!--two products, each with an add to cart button-->
+    <div id="products">
+        <div class="product">
+            <p>Product 1 - R100</p>
+            <button class="add-to-cart" data-price="100">Add to Cart</button>
+        </div>
+        <div class="product">
+            <p>Product 2 - R250</p>
+            <button class="add-to-cart" data-price="R250">Add to Cart</button>
+        </div>
+    </div>
+                <!--space to show total item count and total cost-->
+    <div>
+        <p>Total Items: <span class="cart-count">0</span></p>
+        <p>Total Items: <span class="cart-total">0</span></p>
+    </div>
+
+    <ul id="cart-items"></ul>
+    <p>Total: $<span class="cart-total">0.00</span></p>
+
+    <script>
+
+        //jQuery will all go here step by step
+
+        $(document).ready(function() {
+            let itemCount = 0;
+            let totalCost = 0;
+
+            let cart = {};
+
+            $("add-to-cart").on("click", function() {
+                const name = $(this).data("name"); //get product name
+                const price = parseFloat($(this).data("price"));
+
+                if (cart[name]) {
+                    cart[name].qty += 1;
+                }
+                else {
+                    cart[name] = {price:price, qty:1};
+                }
+                //optional: disable button after adding
+                //$(this).prop("disable", true).text("Item Added"); //button text changes
+
+                itemCount++;
+                totalCost += price;
+
+                //animate the cart count update
+                $(".cart-count").fadeOut(100).text(itemCount).fadeIn(100);
+
+                $(".cart-count").text(itemCount);
+                $(".cart-total").text(totalCost.toFixed(2));
+
+                updateCartUI();
+
+                //add item to cart list
+                const item = $(<li class="cart-item" data-price="${price}">${name} - $${price.toFixed(2)}<button class="remove-from-cart">Remove</button></li>);
+
+                $("#cart-items").append(item);
+
+                //showing the confirmation message
+                
+                $("<div class='confirmation'>Added to cart!</div>").appendTo("body").fadeIn(300).delay(800).fadeOut(500, function() {
+                    $(this).remove();
+                });
+
+                //event delegation to handle dynamic items
+                $("#cart-items").on("click", ".remove-from-cart", function() {
+                    const item = $(this).closest(".cart-item");
+                    const price = parseFloat(item.data("price"));
+
+                    item.remove();  //remove from DOM
+                    itemCount--;
+                    totalCost -= price;
+
+                    $(".cart-count").text(itemCount);
+                    $(".cart-total").text(totalCost.toFixed(2));
+                });
+            });
+
+            //update cart display (optional)
+            function updateCartUI() {
+                $("#cart-items").empty();
+                for(const name in cart) {
+                    const item = cart[name];
+                    const li = $(<li class="cart-tem" data-name="${name}">${name} x $${item.qty} = $${(item.qty * item.price).toFixed(2)}<button class="decrease-qty" data-name="${name}">-</button><button class="increase-qty" data-name="${name}">+</button><button class="remove-from-cart">Remove</button></li>);
+
+                    $("#cart-items").append(li);
+                }
+            }
+
+            //adding event listeners for the '+' and '-' buttons
+                //increase qty
+            $(document).on("click", ".increase-qty", function() {
+                const name = $(this).data("name");
+                cart[name].qty += 1;
+                itemCount++;
+                totalCost += cart[name].price;
+
+                updateCartUI();
+                $(".cart-count").text(itemCount);
+                $(".cart-total").text(totalCost.toFixed(2));
+            });
+                //decrease qty
+            $(document).on("click", ".decrease-qty", function() {
+                const name = $(this).date("name");
+                if(cart[name].qty > 1) {
+                    cart[name].qty -= 1;
+                    itemCount--;
+                    totalCost -= cart[name].price;
+                }
+                else {
+                    delete cart[name];
+                    itemCount--;
+                    totalCost -= cart[name].price;
+                }
+
+                updateCartUI();
+                $("#generate-invoice").trigger("click"); //(optional) invoice updates in real-time
+                //users are now able to adjust item qty directly from cart
+                $(".cart-count").text(itemCount);
+                $(".cart-total").text(totalCost.toFixed(2));
+            })
+
+            //generate invoice when button is clicked
+            $("#generate-invoice").on("click", function() {
+                const $tbody = $("#invoice-table tbody");
+                $tbody.empty();
+
+                let invoiceTotal = 0;
+
+                for(const name in cart) {
+                    const {price, qty} = cart[name];
+                    const subtotal = qty * price;
+                    invoiceTotal += subtotal;
+
+                    const row = <tr><td>${name}</td><td>${qty}</td><td>$${price.toFixed(2)}</td><td>$${subTotal.toFixed(2)}</td></tr>;
+
+                    $tbody.append(row);
+                }
+
+                $("#invoice-total").text("$${invoiceTotal.toFixed(2)}");
+                $("#invoice-section").show();
+            });
+
+            //jQuery live validatiton: for card input ofcourse
+            $("#checkout-form input").on("input", function() {
+                validateFormFields();
+            });
+
+            //live validation (pt.2)
+            function validateFormFields() {
+                const name = $("#cardholder-name").val().trim();
+                const number = $("#card-number").val().replace(/\s+/g, '');
+                const expiry = $("#expiry-date").val();
+                const cvv = $("#cvv").val();
+                let errors = [];
+
+                if(!/^[A-Za-z\s]{2,}$/.test(name)) {
+                    errors.push("Cardholder name must contain only letters.");
+                }
+
+                if(!/^\d{16}$/.test(number)) {
+                    errors.push("Card number must be 16 digits.");
+                }
+
+                if(!/^\d{2}\/\d{2}$/.test(expiry)) {
+                    errors.push("Expiry date must be in MM/YY format.");
+                }
+
+                if(!/^\d{3}$/.test(cvv)) {
+                    errors.push("CVV must be 3 digits.");
+                }
+
+                $("#form-errors").html(errors.length ? errors.join("<br>") : "");
+                return errors.length === 0;
+            }
+
+            //validate upon form submission
+            $("#checkout-form").on("submit", function (event) {
+                event.preventDefault();
+
+                if(validateFormFields()) {
+                    alert("Payment details valid. Proceeding with payment...");
+                            //continue with payment process here
+                }
+                else {
+                    alert("Please correct the highlighted errors before submitting.");
+                }   //the form now reacts instantly as the user types and blocks submission if anything is invalid
+            });
+
+            //adding the toggle function with jQuery
+            $("#toggle-cvv").on("click", function() {
+                const cvvField = $("#cvv");
+                const isHidden = cvvField.attr("type") === "password";
+
+                //toggle input type
+                cvvField.attr("type", isHidden ? "text" : "password");
+
+                //toggle icon
+                $(this).text(isHidden ? "🙈" : "👁️");
+            })
+        });
+
+
+        //handling validation and alerts
+        $("#shipping-form").on("submit", function (event) {
+            event.preventDefault();
+
+            const selected = $("input[name='shipping']:checked");
+
+            if(selected.length === 0) {
+                alert("❗Please select a shipping method.");
+                return;
+            }
+
+            //if radio buttons are used correctly, more than one should not be possible, but this is here in case multiple checkboxes are used instead
+            if(selected.length > 1) {
+                alert("❗Multiple shipping methods are not allowed.");
+                return;
+            }
+                //NOT SURE IF I SHOULD USE A CONDITIONAL HERE AS WELL BECAUSE I THINK THIS STATEMENT EXECUTES REGARDLESS WHEN THE COMPILER GETS HERE
+            alert(' ✅ "${selected.val()}" shipping option added t your order.');
+        })
+
+
+        //jQuery validation script for the 'payment-form'
+        $("#payment-form").on("submit", function(event) {
+            event.preventDefault();
+            let.errors = [];
+
+            const name = $("#cardholder-name").val().trim();
+            const card = $("#card-number").val().replace(/\s+/g, "");
+            const expiry = $("#expiry-date").val().trim();
+            const cvv = $("#cvv").val().trim();
+
+            //name must be only letters and at least 3 letters
+            if(!/^[A-Za-z ]{3,}$/.test(name)) {
+                errors.push("Invalid cadholder name.");
+            }
+
+            //card must be 16 digits (no more - no less)
+            if(!/^\d{16}$/.test(card)) {
+                errors.push("Card number must be 16 digits.");
+            }
+
+            //expiry must be in MM/YY format
+            if(!/^(0[1-9]|1[0-2])\/\d{2}$/.test(expiry)) {
+                errors.push("Expiry date must be in MM/YY format.");
+            }
+
+            //cvv must be 3 or 4 digits
+            if(!/^\d{3,4}$/.test(cvv)) {
+                errors.push("CVV must be 3 or 4 digits.");
+            }
+
+            if(errors.length > 0) {
+                $("#form-errors").html(errors.join("<br>"));
+            }
+            else {
+                $("#form-errors").html("");
+                alert(" ✅ Payment details validated. Processing to payment gateway...");
+                //we can now send the data via AJAX or proceed to the next step
+
+                //🔒 2. Modified JS with AJAX Integration: 
+                // Replace the alert in your form submit handler with the following AJAX logic:
+
+                //inside our form submit handler, afetr validation
+                $.ajax({
+                    url: "/validate-payment",   //this is our server endpoint
+                    method: "POST",
+                    contentType: "application/json",
+                    data: JSON.stringify({
+                        transactionId: Date.now(),  //temporary unique ID
+                        amount: 1500,   //replace with actual total from cart
+                        accountNumber: card     //simplified for demonstration
+                    }),
+                    beforeSend: function() {
+                        $("#payment-status").html(" 🔄 Validating payment...");
+                    },
+                    success: function(response) {
+                        $("#payment-status").html(" ✅ Payment Successful: " + response.message);
+                        //optionally redirect or reset form
+
+                        //✅ Script to populate receipt after successful payment
+                        //step 11
+
+                        //simulate cart for demo purposes (we will replace the following with our real cart data)
+                        const purchasedItems = [
+                            {name: "Product A", qty: 2, price: 100},
+                            {name: "Product B", qty: 1, price: 200},
+                        ];
+
+                        let receiptBody = "";
+                        let total = 0;
+
+                        purchasedItems.forEach(item => {
+                            const subtotal = item.qty * item.price;
+                            total += subtotal;
+                            receiptBody += "<tr><td>${item.name}</td><td>${item.qty}</td><td>${item.price}</td><td>${subtotal}</td></tr>";
+                        });
+
+                        const now = new Date();
+                        const fomattedDate = "${now.toLocaleDateString()} @ ${now.toLocaleTimeString()}";
+
+                        //populating the receipt
+                        $("#receipt-date").text(formattedDate);
+                        $("#recipt-table tbody").html(receiptBody);
+                        $("#receipt-total").text("R" + total);
+                        $("#receipt").fadeIn();
+
+                        //css in the block comments below
+                        /*
+                        //add this to CSS to make the receipt look better
+                        #receipt-table th, #receipt-table td {
+                            padding: 8px;
+                            text-align: center;
+                        }
+                        #receipt-table th {
+                            background-color: #f5f5f5;
+                        }
+                        */
+
+                    },
+                    error: function(xhr) {
+                        if(xhr.status === 400) {
+                            $("#payment-status").html(" ❌ Invalid payment details.");
+                        }
+                        else if(xhr.status === 500) {
+                            $("#payment-status").html(" ⚠️ Server error. Please try again.");
+                        }
+                        else {
+                            $("#payment-status").html(" ❗ Unexpected error.");
+                        }
+                    }
+                });
+            }
+        })
+                                    //simulating sending payment data to our server or a payment gateway and handling the server's response (success or failure)
+
+        //endpoint handleri in block comments below if we run our own Express server
+        /*
+        //if we choose to run our own Express server, here's the endpoint handler:
+        app.post("/validate-payment", (req, res) => {
+            const { transactionId, amount, accountNumber } = req.body;
+
+            if(!transactionId || !amount || !accountNumber) {
+                return res.status(400).json({ message: "Missing required payment fields"});
+            }
+
+            //simulate success or failure
+            if(accountNumber === "0101010101010101") {
+                res.json({message: "Payment validated successfully."});
+            }
+            else {
+                res.status(400).json({message: "Invalid card number"});
+            }
+        });   
+        */ 
+                
+        $("#print-receipt").on("click", function() {
+            const printContents = documents.getElementById("receipt").innerHTML;
+            const win = window.open('', '', 'height=700,width=900');
+
+            win.document.write('<html><head><title>Receipt</title>');
+            win.document.write('<style>body{font-family:sans-serif;} table{width:100%;border-collapse:collapse;} th,td{padding:8px;border:1px solid #ccc;text-align:center;} th{background:#f5f5f5;}</style>');
+            win.document.write('</head><body >');
+            win.document.write(printContents);
+            win.document.write('</body></html>');
+            win.document.close();
+            win.focus();
+            win.print();
+            win.close();
+        });
+
+        //triggering the downlaod
+        $("#downlaod-pdf").on("click", function() {
+            const element = document.getElementById("receipt");
+            const opt = {
+                margin:         0.5,
+                filename:       'receipt.pdf',
+                image:          { type: 'jpeg', quality: 0.98 },
+                html2canvas:    { scale: 2},
+                jsPDF:          { unit: 'in', format: 'letter', orientation: 'portrait' }
+            };
+
+            html2pdf().from(element).set(opt).save();
+        });
+
+    </script>
+
+    <button id="generate-invoice">Generate Invoice</button>
+    
+    <div id="invoice-section" style="display:none;">
+        <h2>Invoice Summary</h2>
+        <table id="invoice-table" border="1">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Qty</th>
+                    <th>Price</th>
+                    <th>Subtotal</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+            <tfoot>            
+                <tr>
+                    <td colspan="3"><strong>Total</strong></td>
+                    <td id="invoice-table">$0.00</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+    <!--basic html form for live card details validation-->
+    <form id="checkout-form">
+        <input type="text" id="cardholder-name" placeholder="Cardholder Name" required />
+        <input type="text" id="card-number" placeholder="Card Number" maxlength="16" required />
+        <input type="text" id="expiry-date" placeholder="MM/YY" maxlength="5" required />
+        <input type="text" id="cvv" placeholder="CVV" maxlength="3" required />
+        <button type="submit">Pay</button>
+    </form>
+
+    <div id="form-errors" style="color:red;"></div>
+
+    <!--include an eye icon/emoji next to the CVV input-->
+    <div style="position:relative; display:inline-block;">
+        <input type="password" id="cvv" placeholder="CVV" maxlength="3" required /> <!--changed the initial type of the cvv field to "password" from "text" for better privacy-->
+        <span id="toggle-cvv" style="position:absolute; right:10px; top:8px; cursor:pointer;">
+            👁️
+        </span>
+    </div>
+
+    <!--shipping options-->
+    <form id="shipping-form">
+        <label><input type="radio" name="shipping" value="standard"> Standard Shipping</label><br>
+        <label><input type="radio" name="shipping" value="express"> Express Shipping</label><br>
+        <label><input type="radio" name="shipping" value="pickup"> Pickup Point</label><br>
+        <button type="submit">Continue</button>
+    </form>
+
+    <!--its time for the payment-->
+    <form id="payment-form">
+        <input type="text" id="cardholder-name" placeholder="Cardholder Name" required>
+        <input type="text" id="card-number" placeholder="Card Number" required maxlength="16">
+        <input type="text" id="expiry-date" placeholder="MM/YY" required>
+        <input type="text" id="cvv" placeholder="CVV" required maxlength="3">
+        <button type="submit">Pay</button>
+    </form>
+
+    <div id="form-errors" style="color:red;"></div>
+
+    <!--simulating sending payment data to our server or a payment gateway and handling the server's response (success or failure)-->
+    <button type="submit">Pay</button>
+    <div id="payment-status" style="margin-top:10px;"></div>
+
+
+    <div id="receipt" style="display: none; margin-top: 20px; border: 1px solid #ccc; padding: 15px;">
+        <h2> 🧾 Receipt</h2>
+        <p><strong>Date:</strong> <span id="receipt-date"></span></p>
+        <table id="receipt-table" border="1" style="width:100%; margin-top:10px;">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Qty</th>
+                    <th>Price</th>
+                    <th>Subtotal</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <p><strong>Total:</strong> <span id="receipt-total"></span></p>
+        <p style="color: green;"><strong>Status:</strong>Paid successfully ✅</p>
+    </div>
+
+    <!--we are going to let the user download the receipt as a pdf or print it sdtraight from the browser they are using-->
+    <button id="print-receipt"> 🖨️ Print / Save Receipt</button>
+    <!--this was supposed to be added to my <head> or just before my closing </body> tag-->
+        <script src ="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <!--adding a downlaod pdf button-->
+        <button id="download-pdf"> ⬇️ Downlaod PDF</button>
+
+</body></html>
